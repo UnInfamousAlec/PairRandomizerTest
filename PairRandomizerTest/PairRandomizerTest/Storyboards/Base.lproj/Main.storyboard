@@ -17,6 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="mtS-kc-zVs">
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZw-j1-p4E">
+                                    <rect key="frame" x="149.5" y="7" width="76" height="30"/>
+                                    <state key="normal" title="Randomize"/>
+                                    <connections>
+                                        <action selector="randomizerButtonPressed:" destination="IXU-Xk-JUE" eventType="touchUpInside" id="P6G-3K-4PU"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="XZw-j1-p4E" firstAttribute="centerX" secondItem="mtS-kc-zVs" secondAttribute="centerX" id="TDt-3U-26Q"/>
+                                <constraint firstItem="XZw-j1-p4E" firstAttribute="centerY" secondItem="mtS-kc-zVs" secondAttribute="centerY" id="pmu-YM-SpC"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NameCell" textLabel="oL1-Eq-62I" style="IBUITableViewCellStyleDefault" id="ePk-N4-Mpg">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>

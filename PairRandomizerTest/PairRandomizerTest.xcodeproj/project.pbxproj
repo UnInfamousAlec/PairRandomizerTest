@@ -62,7 +62,6 @@
 				F49D0AA820A5EC620048EC98 /* Models */,
 				F49D0AA720A5EC5B0048EC98 /* Model Controllers */,
 				F49D0AA620A5EC4F0048EC98 /* View Controllers */,
-				F49D0AA520A5EC490048EC98 /* Views */,
 				F49D0AA420A5EC1B0048EC98 /* Storyboards */,
 				F49D0AA320A5EBFE0048EC98 /* Resources */,
 			);
@@ -85,13 +84,6 @@
 				F49D0A9520A5EBF20048EC98 /* Main.storyboard */,
 			);
 			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		F49D0AA520A5EC490048EC98 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		F49D0AA620A5EC4F0048EC98 /* View Controllers */ = {

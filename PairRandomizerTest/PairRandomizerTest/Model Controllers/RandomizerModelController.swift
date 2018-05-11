@@ -39,12 +39,6 @@ class RandomizerModelController {
     }
     
     
-    // MARK: - Methods
-    func randomizer() {
-        
-    }
-    
-    
     // MARK: - Persistance
     func fileLocation() -> URL {
         let path = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!
@@ -74,5 +68,15 @@ class RandomizerModelController {
             print("Unable to load: \(error) - \(error.localizedDescription)")
         }
         return []
+    }
+}
+
+extension Array {
+    mutating func shuffle() {
+        for _ in 0..<10 {
+            sort {
+                (_,_) in arc4random() < arc4random()
+            }
+        }
     }
 }
