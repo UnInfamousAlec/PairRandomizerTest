@@ -24,7 +24,7 @@ class RandomizerModelController {
     
     // MARK: - CRUD
     // CREATE
-    func createPerson(with firstName: String, lastName: String) {
+    func createPerson(withFirstName firstName: String, lastName: String) {
         let name = Person(firstName: firstName, lastName: lastName)
         self.names.append(name)
         // Add persistance

@@ -31,7 +31,15 @@ class NameListTableViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        let addAction = UIAlertAction(title: "Add", style: .default, handler: nil) // Add randomize if there is time
+        let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
+            
+            guard let firstNameEntered = alertController.textFields?.first?.text, firstNameEntered != "", let lastNameEntered = alertController.textFields?.last?.text, lastNameEntered != "" else { return }
+            RandomizerModelController.shared.createPerson(withFirstName: firstNameEntered, lastName: lastNameEntered)
+            self.tableView.reloadData()
+        }
+        alertController.addAction(addAction)
+        
+        present(alertController, animated: true)
     }
     
     @IBAction func randomizerButtonPressed(_ sender: UIButton) {
@@ -47,7 +55,7 @@ class NameListTableViewController: UITableViewController {
 
     // MARK: - Datasource Methods
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1 // Change to make pairs
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
