@@ -55,16 +55,12 @@ class NameListTableViewController: UITableViewController {
     
 
     // MARK: - Datasource Methods
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 25
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0 // Change to make pairs
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 0 // Change to make pairs
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return RandomizerModelController.shared.names.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
