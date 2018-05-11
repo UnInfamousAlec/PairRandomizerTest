@@ -10,9 +10,6 @@ import UIKit
 
 class NameListTableViewController: UITableViewController {
     
-    // MARK: - Outlets
-    
-    
     // MARK: - Actions
     @IBAction func nameAddButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -28,13 +25,16 @@ class NameListTableViewController: UITableViewController {
             lastNameTextField.keyboardType = .namePhonePad
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
         alertController.addAction(cancelAction)
         
         let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
             
             guard let firstNameEntered = alertController.textFields?.first?.text, firstNameEntered != "", let lastNameEntered = alertController.textFields?.last?.text, lastNameEntered != "" else { return }
             RandomizerModelController.shared.createPerson(withFirstName: firstNameEntered, lastName: lastNameEntered)
+            
             self.tableView.reloadData()
         }
         alertController.addAction(addAction)
@@ -50,21 +50,25 @@ class NameListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        RandomizerModelController.shared.loadFromDocuments()
     }
+    
 
     // MARK: - Datasource Methods
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 25
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 // Change to make pairs
+        return 0 // Change to make pairs
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RandomizerModelController.shared.names.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NameCell", for: indexPath)
         let name = RandomizerModelController.shared.names[indexPath.row]
         cell.textLabel?.text = "\(name.firstName) \(name.lastName)"
         return cell

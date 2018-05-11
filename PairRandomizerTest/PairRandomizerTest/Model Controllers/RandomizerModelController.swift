@@ -18,7 +18,7 @@ class RandomizerModelController {
     var names: [Person] = []
     
     init() {
-        
+        names = loadFromDocuments()
     }
     
     
@@ -27,7 +27,7 @@ class RandomizerModelController {
     func createPerson(withFirstName firstName: String, lastName: String) {
         let name = Person(firstName: firstName, lastName: lastName)
         self.names.append(name)
-        // Add persistance
+        saveToDocuments()
     }
     
     
@@ -35,7 +35,7 @@ class RandomizerModelController {
     func deletePerson(from name: Person) {
         guard let indexPath = names.index(of: name) else { return }
         self.names.remove(at: indexPath)
-        // Add persistance
+        saveToDocuments()
     }
     
     
@@ -46,5 +46,33 @@ class RandomizerModelController {
     
     
     // MARK: - Persistance
+    func fileLocation() -> URL {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask).first!
+        let location = path.appendingPathComponent("names").appendingPathExtension("json")
+        return location
+    }
     
+    func saveToDocuments() {
+        let jsonEncoder = JSONEncoder()
+        
+        do {
+            let data = try jsonEncoder.encode(names)
+            try data.write(to: fileLocation())
+        } catch let error {
+            print("Unable to save: \(error) - \(error.localizedDescription)")
+        }
+    }
+    
+    func loadFromDocuments() -> [Person] {
+        let jsonDecoder = JSONDecoder()
+        
+        do {
+            let data = try Data(contentsOf: fileLocation())
+            let names = try jsonDecoder.decode([Person].self, from: data)
+            return names
+        } catch let error {
+            print("Unable to load: \(error) - \(error.localizedDescription)")
+        }
+        return []
+    }
 }
